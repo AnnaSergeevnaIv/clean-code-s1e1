@@ -19,6 +19,8 @@ var createNewTaskElement = function(taskString){
 
   var listItem = document.createElement("li");
 
+  listItem.className = "task task_incompleted";
+
   //input (checkbox)
   var checkBox = document.createElement("input");//checkbx
   //label
@@ -33,18 +35,20 @@ var createNewTaskElement = function(taskString){
   var deleteButtonImg = document.createElement("img");//delete button image
 
   label.innerText = taskString;
-  label.className = 'task';
+  label.className = 'task__label';
 
   //Each elements, needs appending
   checkBox.type = "checkbox";
+  checkBox.className = "task__checkbox";
   editInput.type = "text";
-  editInput.className = "task";
+  editInput.className = "text-input task__input";
 
   editButton.innerText = "Edit"; //innerText encodes special characters, HTML does not.
-  editButton.className = "borderless-button_edit";
+  editButton.className = "button borderless-button borderless-button_edit";
 
-  deleteButton.className = "bordered-button";
+  deleteButton.className = "button bordered-button";
   deleteButtonImg.src = './remove.svg';
+  deleteButtonImg.className = "bordered-button__img";
   deleteButton.appendChild(deleteButtonImg);
 
 
@@ -82,8 +86,8 @@ var editTask = function() {
 
   var listItem = this.parentNode;
 
-  var editInput = listItem.querySelector('input[type=text]');
-  var label = listItem.querySelector("label");
+  var editInput = listItem.querySelector('.task__input');
+  var label = listItem.querySelector(".task__label");
   var editBtn = listItem.querySelector(".borderless-button_edit");
   var containsClass = listItem.classList.contains("task_editable");
   //If class of the parent is .task_editable
@@ -154,8 +158,8 @@ addButton.addEventListener("click", ajaxRequest);
 var bindTaskEvents = function(taskListItem, checkBoxEventHandler) {
   console.log("bind list item events");
   //select ListItems children
-  var checkBox = taskListItem.querySelector("input[type=checkbox]");
-  var editButton = taskListItem.querySelector("button.borderless-button_edit");
+  var checkBox = taskListItem.querySelector(".task__checkbox");
+  var editButton = taskListItem.querySelector(".borderless-button_edit");
   var deleteButton = taskListItem.querySelector(".bordered-button");
 
 
